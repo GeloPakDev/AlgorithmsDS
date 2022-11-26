@@ -173,6 +173,42 @@ void removeKthNode(Node *head, int k) {
 
 }
 
+void printKthNode(Node *head, int k) {
+    int counter = 0;
+    while (head != nullptr) {
+        counter++;
+        if (counter == k) {
+            cout << head->data;
+        }
+        head = head->next;
+    }
+}
+
+void printKthNextNode(Node *head, int k) {
+    int counter = 0;
+    while (head != nullptr) {
+        counter++;
+        if (counter == k) {
+            cout << head->next->data;
+        }
+        head = head->next;
+    }
+}
+
+void printKthBeforeNode(Node *head, int k) {
+    int counter = 0;
+    while (head != nullptr) {
+        counter++;
+        if (counter == k - 1) {
+            cout << head->data;
+        }
+        head = head->next;
+    }
+}
+
+
+
+
 //Util functions
 
 
@@ -189,7 +225,7 @@ int main() {
     head->data = 1; // assign data in first node
     head->next = second; // Link first node with second
 
-    second->data = 3; // assign data to second node
+    second->data = 23133; // assign data to second node
     second->next = third;
 
     third->data = 3; // assign data to third node
@@ -213,6 +249,8 @@ int main() {
 
     fifth->data = 6; // assign data to third node
     fifth->next = nullptr;
+
+    printKthBeforeNode(head, 3);
 
     return 0;
 }
