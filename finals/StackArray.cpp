@@ -8,7 +8,7 @@ class Stack {
     int top;
 
 public:
-    int a[MAX]; // Maximum size of Stack
+    int a[MAX]{}; // Maximum size of Stack
 
     Stack() { top = -1; }
 
@@ -18,7 +18,7 @@ public:
 
     int peek();
 
-    bool isEmpty();
+    bool isEmpty() const;
 };
 
 bool Stack::push(int x) {
@@ -48,7 +48,7 @@ int Stack::peek() {
     }
 }
 
-bool Stack::isEmpty() {
+bool Stack::isEmpty() const {
     return (top < 0);
 }
 

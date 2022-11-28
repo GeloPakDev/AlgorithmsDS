@@ -9,7 +9,7 @@ public:
 };
 
 StackNode *newNode(int data) {
-    StackNode *stackNode = new StackNode();
+    auto *stackNode = new StackNode();
     stackNode->data = data;
     stackNode->next = nullptr;
     return stackNode;
