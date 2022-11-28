@@ -94,14 +94,19 @@ bool isDescendingOrder(Node *head) {
 Node *concatenateLinkedList(Node *listOne, Node *listTwo) {
     //Store two lists in the temp values
     Node *listOneTemp = listOne;
-    Node *listTwoTemp = listTwo;
     //Get last node of the first List
-    while (listOneTemp != nullptr) {
+    while (listOneTemp->next != nullptr) {
         listOneTemp = listOneTemp->next;
     }
-    listOneTemp->next = listTwoTemp;
-    listTwoTemp = nullptr;
-    return listOneTemp;
+    listOneTemp->next = listTwo;
+    return listOne;
+}
+
+Node *removeFirstNode(Node *head) {
+    Node *temp = head;
+    head = head->next;
+    free(temp);
+    return head;
 }
 
 void removeLastNode(Node *head) {
@@ -112,12 +117,6 @@ void removeLastNode(Node *head) {
         }
         head = head->next;
     }
-}
-
-void removeFirstNode(Node *head) {
-    Node *temp = head;
-    temp->next->next = temp;
-    temp->next = nullptr;
 }
 
 int calculateAverage(Node *head) {
@@ -165,12 +164,28 @@ int numberOccurrences(int number, Node *head) {
     }
     return count;
 }
-
-void removeKthNode(Node *head, int k) {
-    while (head != nullptr) {
-        head = head->next;
+//TODO
+Node *removeKthNode(Node *head, int k) {
+    int counter = 0;
+    Node *temp = head;
+    while (temp != nullptr) {
+        counter++;
+        if (k == 1) {
+            head = head->next;
+            free(temp);
+            return head;
+        }
+        if (counter == k - 1) {
+            temp->next = temp->next->next;
+            temp->next->next = nullptr;
+        }
+        if (temp->next->next == nullptr) {
+            temp->next = nullptr;
+            break;
+        }
+        temp = temp->next;
     }
-
+    return head;
 }
 
 void printKthNode(Node *head, int k) {
@@ -206,51 +221,43 @@ void printKthBeforeNode(Node *head, int k) {
     }
 }
 
-
-
-
-//Util functions
-
-
-int main() {
-    Node *head;
-    Node *second;
-    Node *third;
-
-    // allocate 3 nodes in the heap
-    head = new Node();
-    second = new Node();
-    third = new Node();
-
-    head->data = 1; // assign data in first node
-    head->next = second; // Link first node with second
-
-    second->data = 23133; // assign data to second node
-    second->next = third;
-
-    third->data = 3; // assign data to third node
-    third->next = nullptr;
-
-
-    Node *headOne;
-    Node *fourth;
-    Node *fifth;
-
-    // allocate 3 nodes in the heap
-    headOne = new Node();
-    fourth = new Node();
-    fifth = new Node();
-
-    headOne->data = 4; // assign data in first node
-    headOne->next = fourth; // Link first node with second
-
-    fourth->data = 5; // assign data to second node
-    fourth->next = fifth;
-
-    fifth->data = 6; // assign data to third node
-    fifth->next = nullptr;
-
-    printKthBeforeNode(head, 3);
-
-    return 0;
-}
+//int main() {
+//    Node *head;
+//    Node *second;
+//    Node *third;
+//
+//    // allocate 3 nodes in the heap
+//    head = new Node();
+//    second = new Node();
+//    third = new Node();
+//
+//    head->data = 1; // assign data in first node
+//    head->next = second; // Link first node with second
+//
+//    second->data = 2; // assign data to second node
+//    second->next = third;
+//
+//    third->data = 3; // assign data to third node
+//    third->next = nullptr;
+//
+//
+//    Node *headOne;
+//    Node *fourth;
+//    Node *fifth;
+//
+//    // allocate 3 nodes in the heap
+//    headOne = new Node();
+//    fourth = new Node();
+//    fifth = new Node();
+//
+//    headOne->data = 4; // assign data in first node
+//    headOne->next = fourth; // Link first node with second
+//
+//    fourth->data = 5; // assign data to second node
+//    fourth->next = fifth;
+//
+//    fifth->data = 6; // assign data to third node
+//    fifth->next = nullptr;
+//
+//    return 0;
+//}
