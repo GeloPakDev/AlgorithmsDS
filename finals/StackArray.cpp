@@ -1,5 +1,3 @@
-#include <iostream>
-
 using namespace std;
 
 #define MAX 1000
@@ -52,6 +50,7 @@ bool Stack::isEmpty() const {
     return (top < 0);
 }
 
+//TASKS
 int averageValue(Stack stack) {
     int sum = 0;
     int counter = 0;
@@ -85,14 +84,58 @@ int minValue(Stack stack) {
     return min;
 }
 
-int main() {
-    class Stack stack;
-    stack.push(10);
-    stack.push(-20);
-    stack.push(-8920);
-    stack.push(2120);
-    stack.push(30);
-
-    int i = minValue(stack);
-    cout << i;
+int nonZeroElements(Stack stack) {
+    int count = 0;
+    while (!stack.isEmpty()) {
+        if (stack.peek() != 0) {
+            count++;
+        }
+        stack.pop();
+    }
+    return count;
 }
+
+int zeroElements(Stack stack) {
+    int count = 0;
+    while (!stack.isEmpty()) {
+        if (stack.peek() == 0) {
+            count++;
+        }
+        stack.pop();
+    }
+    return count;
+}
+
+int greaterThanZero(Stack stack) {
+    int count = 0;
+    while (!stack.isEmpty()) {
+        if (stack.peek() > 0) {
+            count++;
+        }
+        stack.pop();
+    }
+    return count;
+}
+
+int lessThanZero(Stack stack) {
+    int count = 0;
+    while (!stack.isEmpty()) {
+        if (stack.peek() < 0) {
+            count++;
+        }
+        stack.pop();
+    }
+    return count;
+}
+
+//int main() {
+//    class Stack stack;
+//    stack.push(10);
+//    stack.push(-12);
+//    stack.push(-8920);
+//    stack.push(11);
+//    stack.push(30);
+//
+//    int i = lessThanZero(stack);
+//    cout << i;
+//}
